@@ -24,6 +24,7 @@ def process_url(data):
     }
    
     csv_data = csv.reader(io.StringIO(data))
+    hours = {i:0 for i in range(24)}
     for i, row in enumerate(csv_data):
         path_to_file = row[0]
         datetime_accessed_str = row[1]
@@ -50,7 +51,7 @@ def process_url(data):
             if v > max:
                 max_hits = k
                 max = v
-        hours = {i:0 for i in range(24)}
+    
         hours[date_accessed.hour] += 1
     
     for hour, count in hours.items():
